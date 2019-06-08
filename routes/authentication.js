@@ -38,26 +38,16 @@ expressRouter.get('/logout', (req, res) => {
 //changePassword//changePassword//changePassword
 //changePassword//changePassword//changePassword
 
-expressRouter.get('/signin1', isLoggedIn, (req, res) => {
-    res.render('auth/signin1');
-});
-
-expressRouter.post('/signin1', isLoggedIn, passport.authenticate('local.signin1', {
-    successRedirect: '/',
-    failureRedirect: '/signin1',
-    failureFlash: true
-}));
-
-
-expressRouter.get('/changepassword', (req, res) => {
+expressRouter.get('/changepassword', isLoggedIn, (req, res) => {
     res.render('auth/changepassword');
 });
 
-expressRouter.post('/changepassword',  isLoggedIn,passport.authenticate('local.changepassword', {
+expressRouter.post('/changepassword', isLoggedIn, passport.authenticate('local.changepassword', {
     successRedirect: '/',
-    failureRedirect: '/signin',
+    failureRedirect: '/changepassword',
     failureFlash: true
 }));
+
 
 //changePassword//changePassword//changePassword
 //changePassword//changePassword//changePassword
